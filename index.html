@@ -1,7 +1,155 @@
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Be My Valentine</title>
+    <style>
+        @keyframes float {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            background: url('/static/jeff.png') no-repeat center center/cover;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        h1 {
+            color: #ff69b4;
+            position: absolute;
+            top: 22%;
+            left: 55%;
+            transform: translate(-50%, -50%);
+            margin: 0;
+            font-size: 2em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .buttons {
+            position: absolute;
+            top: 32%;
+            left: 53%;  /* Move buttons slightly to the right */
+            transform: translate(-50%, -50%);
+        }
+
+        #yes-button, #no-button {
+            padding: 10px 20px;
+            font-size: 18px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        #yes-button {
+            background-color: #32CD32; /* Green */
+            color: white;
+            margin-left: 10px; /* Move "Yes" button slightly to the right */
+        }
+
+        #no-button {
+            background-color: #89827C; /* Dull grayish-green */
+            color: white;
+            cursor: pointer;
+            position: relative;
+            margin-top: 10px; /* Keep "No" button below the "Yes" button */
+        }
+
+        #yes-button:hover {
+            background-color: #FF1493; /* Pink when hovered */
+        }
+
+        #no-button:hover {
+            background-color: #89827C; /* Disabled, no hover effect */
+        }
+
+        #message {
+            margin-top: 30px;
+            font-size: 1.5em;
+            color: #ff69b4;
+            display: none;
+            white-space: normal;
+            overflow: hidden;
+            position: absolute;
+            top: 50%;
+            left: 55%; /* Keep the reply box in the same place */
+            transform: translate(-50%, -50%);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            width: 60%; 
+            word-wrap: break-word;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
 <body>
-<h1>Hello World</h1>
-<p>Hi, I'm Zeus.</p>
+    <div>
+        <h1 id="headline">Will you be my Valentine?</h1>
+        <div class="buttons">
+            <button id="yes-button">Yes</button>
+            <button id="no-button">No</button>
+        </div>
+        <div id="message"></div>
+        <audio id="audio" src="/static/song.mp3" preload="auto"></audio>
+    </div>
+
+    <script>
+        const noButton = document.getElementById('no-button');
+        const yesButton = document.getElementById('yes-button');
+        const message = document.getElementById('message');
+        const headline = document.getElementById('headline');
+        const audio = document.getElementById('audio');
+
+        noButton.addEventListener('mouseover', () => {
+            const randomX = Math.random() * 300 - 150;
+            const randomY = Math.random() * 200 - 100;
+
+            noButton.style.transform = `translate(${randomX}px, ${randomY}px)`;
+        });
+
+        yesButton.addEventListener('click', () => {
+            yesButton.style.backgroundColor = '#FF1493'; /* Make the button pink when clicked */
+            yesButton.style.transform = 'scale(1.5)';
+            audio.play();  // Play the song when 'Yes' is clicked
+            setTimeout(() => {
+                typeMessage("This is our fourth month anniversary and my god you are absolutely the one fo(u)r me bahahahahhaha. I just had to, no asa maaren na please. Thank you for being my valentine. I love you so muchhhh pillu.");
+            }, 500);
+        });
+
+        function typeMessage(text) {
+            let i = 0;
+            const typingSpeed = 100; // Speed of typing
+
+            function typingEffect() {
+                if (i < text.length) {
+                    message.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(typingEffect, typingSpeed);
+                }
+            }
+
+            message.style.display = 'block'; // Make sure the message div is visible
+            message.innerHTML = ""; // Clear any previous text
+            typingEffect();
+        }
+    </script>
 </body>
 </html>
