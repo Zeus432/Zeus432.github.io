@@ -6,6 +6,98 @@
     <title>Be My Valentine</title>
     <style>
         /* Your CSS code */
+        @keyframes float {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            background: url('/static/jeff.png') no-repeat center center/cover;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        h1 {
+            color: #ff69b4;
+            position: absolute;
+            top: 22%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            margin: 0;
+            font-size: 2em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .buttons {
+            position: absolute;
+            top: 32%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        #yes-button, #no-button {
+            padding: 10px 20px;
+            font-size: 18px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        #yes-button {
+            background-color: #32CD32; /* Green */
+            color: white;
+            margin-left: 10px; /* Move "Yes" button slightly to the right */
+        }
+
+        #no-button {
+            background-color: #89827C; /* Dull grayish-green */
+            color: white;
+            cursor: pointer;
+            position: relative;
+            margin-top: 10px; /* Keep "No" button below the "Yes" button */
+        }
+
+        #yes-button:hover {
+            background-color: #FF1493; /* Pink when hovered */
+        }
+
+        #no-button:hover {
+            background-color: #89827C; /* Disabled, no hover effect */
+        }
+
+        #message {
+            margin-top: 30px;
+            font-size: 1.5em;
+            color: #ff69b4;
+            display: none;
+            white-space: normal;
+            overflow: hidden;
+            position: absolute;
+            top: 50%;
+            left: 55%; /* Move reply box slightly to the right */
+            transform: translate(-50%, -50%);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            width: 60%; 
+            word-wrap: break-word;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+        }
     </style>
 </head>
 <body>
