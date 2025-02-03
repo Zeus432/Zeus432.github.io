@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Be My Valentine</title>
     <style>
-        /* Your CSS code */
         @keyframes float {
             0% {
                 transform: translateY(0);
@@ -35,7 +34,7 @@
             color: #ff69b4;
             position: absolute;
             top: 22%;
-            left: 50%;
+            left: 55%;
             transform: translate(-50%, -50%);
             margin: 0;
             font-size: 2em;
@@ -45,7 +44,7 @@
         .buttons {
             position: absolute;
             top: 32%;
-            left: 50%;
+            left: 53%;  /* Move buttons slightly to the right */
             transform: translate(-50%, -50%);
         }
 
@@ -89,7 +88,7 @@
             overflow: hidden;
             position: absolute;
             top: 50%;
-            left: 55%; /* Move reply box slightly to the right */
+            left: 55%; /* Keep the reply box in the same place */
             transform: translate(-50%, -50%);
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
             width: 60%; 
@@ -108,20 +107,15 @@
             <button id="no-button">No</button>
         </div>
         <div id="message"></div>
+        <audio id="audio" src="/static/song.mp3" preload="auto"></audio>
     </div>
-
-    <!-- Audio Element -->
-    <audio id="audio" preload="auto">
-        <source src="/static/song.mp3" type="audio/mp3">
-        Your browser does not support the audio element.
-    </audio>
 
     <script>
         const noButton = document.getElementById('no-button');
         const yesButton = document.getElementById('yes-button');
         const message = document.getElementById('message');
         const headline = document.getElementById('headline');
-        const audio = document.getElementById('audio');  // Reference to audio element
+        const audio = document.getElementById('audio');
 
         noButton.addEventListener('mouseover', () => {
             const randomX = Math.random() * 300 - 150;
@@ -133,10 +127,10 @@
         yesButton.addEventListener('click', () => {
             yesButton.style.backgroundColor = '#FF1493'; /* Make the button pink when clicked */
             yesButton.style.transform = 'scale(1.5)';
+            audio.play();  // Play the song when 'Yes' is clicked
             setTimeout(() => {
                 typeMessage("This is our fourth month anniversary and my god you are absolutely the one fo(u)r me bahahahahhaha. I just had to, no asa maaren na please. Thank you for being my valentine. I love you so muchhhh pillu.");
             }, 500);
-            audio.play(); // Play the song when the Yes button is clicked
         });
 
         function typeMessage(text) {
